@@ -43,6 +43,10 @@ impl Functions for Urxvt {
         self.init_args(config);
         let mut command = std::process::Command::new(&self.exe_path);
 
+        command.arg("-xrm");
+        command.arg("URxvt.perl-ext-common:default");
+        command.arg("-sl"); // disable scrollbar (-sb does not work)
+        command.arg("0");
         command.arg("-name");
         command.arg("glrnvim");
         // Disable Ctrl-Z. Shouldn't this pass ^Z to nvim??
